@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>gitversion</name>
+    </assembly>
+    <members>
+        <member name="M:GitVersion.OverrideConfigOptionParser.GetSupportedProperties">
+            <summary>
+            Dynamically creates <see cref="T:System.Linq.ILookup`2"/> of
+            <see cref="T:GitVersion.Model.Configuration.Config"/> properties supported as a part of command line '/overrideconfig' option.
+            </summary>
+            <returns></returns>
+            <remarks>
+            Lookup keys are created from <see cref="T:YamlDotNet.Serialization.YamlMemberAttribute"/> to match 'GitVersion.yml'
+            options as close as possible.
+            </remarks>
+        </member>
+        <member name="M:GitVersion.OverrideConfigOptionParser.IsSupportedPropertyType(System.Type)">
+            <summary>
+            Checks if property <see cref="T:System.Type"/> of <see cref="T:GitVersion.Model.Configuration.Config"/>
+            is supported as a part of command line '/overrideconfig' option.
+            </summary>
+            <param name="propertyType">Type we want to check.</param>
+            <returns>True, if type is supported.</returns>
+            <remarks>Only simple types are supported</remarks>
+        </member>
+        <member name="M:GitVersion.QuotedStringHelpers.SplitUnquoted(System.String,System.Char)">
+            <summary>
+            Splits input string based on split-character, ignoring split-character in
+            quoted part of the string.
+            </summary>
+            <param name="input">String we want to split.</param>
+            <param name="splitChar">Character used for splitting.</param>
+            <returns>Array of splitted string parts</returns>
+            <remarks>
+            If there is opening quotes character without closing quotes,
+            closing quotes are implicitly assumed at the end of the input string.
+            </remarks>
+            <example>
+            "one two three" -> {"one", "two",  "three"}
+            "one \"two three\"" -> {"one", "\"two three\""}
+            "one \"two three" -> {"one", "\"two three"} // implicit closing quote.
+            </example>
+        </member>
+        <member name="M:GitVersion.QuotedStringHelpers.UnquoteText(System.String)">
+            <summary>
+            Removes enclosing quotes around input string and unescapes quote characters
+            inside of string.
+            </summary>
+            <param name="input">Input string to unescape.</param>
+            <returns>Unescaped string.</returns>
+            <example>
+            "\"one \\\"two\\\"\"" -> "one \"two\""
+            </example>
+        </member>
+    </members>
+</doc>
